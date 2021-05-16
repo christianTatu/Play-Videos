@@ -7,17 +7,14 @@ class TaskList3Spec extends PlaySpec with GuiceOneServerPerSuite with OneBrowser
   "Task list 3" must {
     "login and access functions" in {
       go to s"http://localhost:$port/load3"
-      pageTitle mustBe "Login"
-      find(cssSelector("h2")).isEmpty mustBe false
-      find(cssSelector("h2")).foreach(e => e.text mustBe "Login")
-      click on "username-login"
-      textField("username-login").value = "Mark"
-      click on "password-login"
-      pwdField(id("password-login")).value = "pass"
+      pageTitle mustBe "Task List (Version 3)"
+      click on "createName"
+      textField("createName").value = "a"
+      click on "createPass"
+      pwdField(id("password-login")).value = "b"
       submit()
       eventually {
         pageTitle mustBe "Task List"
-        find(cssSelector("h2")).isEmpty mustBe false
         find(cssSelector("h2")).foreach(e => e.text mustBe "Task List")
         findAll(cssSelector("li")).toList.map(_.text) mustBe List("Make videos", "eat","sleep","code")
       }

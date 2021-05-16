@@ -1,4 +1,7 @@
 import sbtcrossproject.{crossProject, CrossType}
+enablePlugins(JavaAppPackaging)
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
 
 lazy val server = (project in file("server")).settings(commonSettings).settings(
 	name := "Play-Videos-Server",

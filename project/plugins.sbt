@@ -5,6 +5,7 @@ logLevel := Level.Warn
 resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/"
 
 // Sbt plugins
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.0")
 
 // Use Scala.js 0.6.x
 addSbtPlugin("com.vmunier"                  % "sbt-web-scalajs"           % "1.0.10-0.6")
