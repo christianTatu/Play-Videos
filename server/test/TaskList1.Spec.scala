@@ -3,10 +3,10 @@ import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import org.scalatestplus.play.OneBrowserPerSuite
 import org.scalatestplus.play.HtmlUnitFactory
 
-class TaskList1Spec extends PlaySpec with GuiceOneServerPerSuite with OneBrowserPerSuite with HtmlUnitFactory {
-  "Task list 1" must {
+class TaskList3Spec extends PlaySpec with GuiceOneServerPerSuite with OneBrowserPerSuite with HtmlUnitFactory {
+  "Task list 3" must {
     "login and access functions" in {
-      go to s"http://localhost:$port/login1"
+      go to s"http://localhost:$port/load3"
       pageTitle mustBe "Login"
       find(cssSelector("h2")).isEmpty mustBe false
       find(cssSelector("h2")).foreach(e => e.text mustBe "Login")
