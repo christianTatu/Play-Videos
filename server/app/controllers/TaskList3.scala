@@ -27,11 +27,11 @@ class TaskList3 @Inject() (cc: ControllerComponents) extends AbstractController(
       }
     }.getOrElse(Redirect(routes.TaskList3.load()))
   }
-
+  //adsasdasdasdasdasd
   def withSessionUsername(f: String => Result)(implicit request: Request[AnyContent]) = {
     request.session.get("username").map(f).getOrElse(Ok(Json.toJson(Seq.empty[String])))
   }
-
+  //asddasasdasdasdasdasdasdasd
   def validate = Action { implicit request =>
     withJsonBody[UserData] { ud =>
       if (TaskListInMemoryModel.validateUser(ud.username, ud.password)) {
@@ -41,6 +41,10 @@ class TaskList3 @Inject() (cc: ControllerComponents) extends AbstractController(
         Ok(Json.toJson(false))
       }
     }
+  }
+
+  def fuckMe = {
+    println("FUCKKKKKKKKKK")
   }
 
   def createUser = Action { implicit request =>
