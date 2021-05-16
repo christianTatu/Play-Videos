@@ -6,6 +6,8 @@ const tasksRoute = document.getElementById("tasksRoute").value;
 const createRoute = document.getElementById("createRoute").value;
 const deleteRoute = document.getElementById("deleteRoute").value;
 const addRoute = document.getElementById("addRoute").value;
+const universalMessage = document.getElementById("sendAllRoute").value;
+const privateMessageRoute = document.getElementById("privateMessageRoute").value;
 const logoutRoute = document.getElementById("logoutRoute").value;
 
 function login() {
@@ -88,6 +90,50 @@ function addTask() {
       document.getElementById("task-message").innerHTML = "";
     } else {
       document.getElementById("task-message").innerHTML = "Failed to add.";
+    }
+  });
+}
+
+function sendAll() {
+  let allMsg = document.getElementById("sendAll").value; 
+  fetch(universalMessage, {  //might need to be new route?
+		method: 'POST',
+		headers: {'Content-Type': 'application/json', 'Csrf-Token': csrfToken },
+		body: JSON.stringify(allMsg)
+	}).then(res => res.json()).then(data => {
+    if(data) {
+      loadTasks();
+      document.getElementById("newTask").value = "";
+      document.getElementById("task-message").innerHTML = "";
+      document.getElementById("sendAll-message").innerHTML = "";
+    } else {
+      document.getElementById("sendAll-message").innerHTML = "Failed to add.";
+    }
+  });
+}
+
+function sendPrivateMessage() {
+  let reciever = document.getElementById("RecieverName").value; 
+  let message = document.getElementById("privateMessage").value; 
+  fetch(privateMessageRoute, {  //might need to be new route?
+		method: 'POST',
+		headers: {'Content-Type': 'application/json', 'Csrf-Token': csrfToken },
+		body: JSON.stringify({reciever,message})
+	}).then(res => res.json()).then(data => {
+    if(data) {
+      console.log("data true")
+      loadTasks();
+      document.getElementById("newTask").value = "";
+      document.getElementById("task-message").innerHTML = "";
+      document.getElementById("sendAll-message").innerHTML = "";
+      document.getElementById("send-Private-Message").innerHTML = "";
+      document.getElementById("RecieverName").innerHTML = "";
+      document.getElementById("privateMessage").innerHTML = "";
+    } else {
+      console.log("else case data")
+      document.getElementById("send-Private-Message").innerHTML = "Failed to add.";
+      document.getElementById("RecieverName").innerHTML = "";
+      document.getElementById("privateMessage").innerHTML = "";
     }
   });
 }

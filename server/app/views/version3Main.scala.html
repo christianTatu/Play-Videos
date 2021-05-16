@@ -23,13 +23,24 @@
 	</div>
 
 	<div id="task-section" hidden>
-		<h2>Task List</h2>
+		<h2>Messages</h2>
 	
 		<ul id="task-list">
 		</ul>
 		
 		<input type="text" id="newTask"></input>
 		<button onclick="addTask()">Add Task</button><span id="task-message"></span>
+
+		<input type="text" id="sendAll"></input>
+		<button onclick="sendAll()">Send a Message to all users</button><span id="sendAll-message"></span>
+
+		<h2>Send Private Message:</h2>
+		<br>
+		User: <input type="text" id="RecieverName">
+		<br>
+		Message: <input type="text" id="privateMessage">
+		<br>
+		<button onclick="sendPrivateMessage()">Send PM</button><span id="send-Private-Message"></span>
 		
 		<div>
 			<button onclick="logout()">Logout</button>
@@ -44,6 +55,9 @@
 	<input type="hidden" id="createRoute" value="@routes.TaskList3.createUser()">
 	<input type="hidden" id="deleteRoute" value="@routes.TaskList3.delete()">
 	<input type="hidden" id="addRoute" value="@routes.TaskList3.addTask()">
+	<input type="hidden" id="sendAllRoute" value="@routes.TaskList3.sendAll()">
+	<input type="hidden" id="UniversalMessageRoute" value="@routes.TaskList3.sendAll()">
+	<input type="hidden" id="privateMessageRoute" value="@routes.TaskList3.privateMessage()">
 	<input type="hidden" id="logoutRoute" value="@routes.TaskList3.logout()">
 	
 	<script src="@routes.Assets.versioned("javascript/version3.js")"></script>

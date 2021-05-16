@@ -3,8 +3,8 @@ package models
 import collection.mutable
 
 object TaskListInMemoryModel {
-  private val users = mutable.Map[String, String]("Mark" -> "pass")
-  private val tasks = mutable.Map[String, List[String]]("Mark" -> List("Make videos", "eat","sleep","code"))
+  private val users = mutable.Map[String, String]("mlewis" -> "prof","web" -> "apps")
+  private val tasks = mutable.Map[String, List[String]]("mlewis" -> List("universal messege"), ("web") -> List("messege from mlewis", "universal messege"))
   
   def validateUser(username: String, password: String): Boolean = {
     users.get(username).map(_ == password).getOrElse(false)
@@ -23,6 +23,40 @@ object TaskListInMemoryModel {
   
   def addTask(username: String, task: String): Unit = {
     tasks(username) = task :: tasks.get(username).getOrElse(Nil)
+     println(tasks)
+  }
+
+  def universalMessege(sender: String, messege: String): Unit = {
+    val msgSender = ""+sender+": "+messege
+    println("before")
+    println(users)
+    println(tasks)
+    for(user <- tasks.keys){
+      addTask(user,msgSender)
+    }
+    println("after")
+    println(users)
+    println(tasks)
+    //tasks(username) = task :: tasks.get(username).getOrElse(Nil)
+  }
+
+    def privateMessage(sender: String, message: String, reciever: String): Unit = {
+      val msgSender = "PRIVATE MESSAGE:"+sender+": "+message
+      println("private message before")
+      println(users)
+      println(tasks)
+      for(user <- tasks.keys){
+         println("single user ="+user)
+         println("reciever = "+reciever)
+        if(user == reciever){
+          println("if statement hits")
+          addTask(user,msgSender)
+        }
+      }
+      println("private message after")
+      println(users)
+      println(tasks)
+    //tasks(username) = task :: tasks.get(username).getOrElse(Nil)
   }
   
   def removeTask(username: String, index: Int): Boolean = {

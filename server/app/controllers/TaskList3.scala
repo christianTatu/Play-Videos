@@ -15,12 +15,15 @@ class TaskList3 @Inject() (cc: ControllerComponents) extends AbstractController(
   }
 
   implicit val userDataReads = Json.reads[UserData]
+  implicit val privMessageReads = Json.reads[PrivMessage]
 
   def withJsonBody[A](f: A => Result)(implicit request: Request[AnyContent], reads: Reads[A]) = {
     request.body.asJson.map { body =>
       Json.fromJson[A](body) match {
         case JsSuccess(a, path) => f(a)
-        case e @ JsError(_) => Redirect(routes.TaskList3.load())
+        case e @ JsError(_) => 
+        println("e ="+e)
+        Redirect(routes.TaskList3.load())
       }
     }.getOrElse(Redirect(routes.TaskList3.load()))
   }
@@ -61,6 +64,28 @@ class TaskList3 @Inject() (cc: ControllerComponents) extends AbstractController(
     withSessionUsername { username =>
       withJsonBody[String] { task =>
         TaskListInMemoryModel.addTask(username, task);
+        Ok(Json.toJson(true))
+      }
+    }
+  }
+
+  def sendAll = Action { implicit request =>
+    println("sending All")
+    withSessionUsername { username =>
+      withJsonBody[String] { allMsg =>
+        TaskListInMemoryModel.universalMessege(username, allMsg);
+        Ok(Json.toJson(true))
+      }
+    }
+  }
+  def privateMessage = Action { implicit request =>
+    println("privateMessage Called in TL3")
+    println(request.body.toString())
+    withSessionUsername { username =>
+      withJsonBody[PrivMessage] { privateMessage =>
+        println("private message ="+privateMessage);
+        TaskListInMemoryModel.privateMessage(username, privateMessage.message, privateMessage.reciever);
+
         Ok(Json.toJson(true))
       }
     }
