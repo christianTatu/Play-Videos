@@ -11,6 +11,7 @@ import models._
 @Singleton
 class TaskList3 @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
   def load = Action { implicit request =>
+    println("Load on v3main called in load function in controller")
     Ok(views.html.version3Main())
   }
 

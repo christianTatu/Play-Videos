@@ -49,14 +49,13 @@ class TaskListInMemoryModelSpec extends PlaySpec {
 
     "send universal Message from mlewis" in {
       TaskListInMemoryModel.universalMessege("mlewis", "test Message")
-      TaskListInMemoryModel.getTasks("mlewis") must contain ("test Message")
-      TaskListInMemoryModel.getTasks("web") must contain ("test Message")
+      TaskListInMemoryModel.getTasks("mlewis") must contain ("mlewis: test Message")
+      TaskListInMemoryModel.getTasks("web") must contain ("mlewis: test Message")
     }
 
     "Send Private Message from mlewis to Web" in {
       TaskListInMemoryModel.privateMessage("mlewis", "test Message", "web")
-      TaskListInMemoryModel.getTasks("mlewis") must contain ("test Message")
-      TaskListInMemoryModel.getTasks("web") must contain ("test Message")
+      TaskListInMemoryModel.getTasks("web") must contain ("PRIVATE MESSAGE:mlewis: test Message")
     }
   }
 }
