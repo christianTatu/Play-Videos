@@ -47,7 +47,7 @@ object TaskListInMemoryModel {
       println(users)
       println(tasks)
       for(user <- tasks.keys){
-         println("single user ="+user)
+         println("sender user ="+user)
          println("reciever = "+reciever)
         if(user == reciever){
           println("if statement hits")

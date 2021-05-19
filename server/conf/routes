@@ -43,6 +43,15 @@ GET  /logout3						controllers.TaskList3.logout
 POST /universalMessage           controllers.TaskList3.sendAll
 POST /privateMessage           controllers.TaskList3.privateMessage
 
+#routes for version 4
+GET /loadC            controllers.ChatApp.load
+POST /validateC          controllers.ChatApp.validate
+POST /createUserC     controllers.ChatApp.createUser
+GET /logoutC          controllers.ChatApp.logout
+GET /taskListC        controllers.ChatApp.taskList
+POST /universalMessageC          controllers.ChatApp.sendAll
+POST /privateMessageC           controllers.ChatApp.privateMessage
+
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)
 GET        /versionedAssets/*file        controllers.Assets.versioned(path="/public", file: Asset)

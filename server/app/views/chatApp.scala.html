@@ -1,0 +1,14 @@
+@()(implicit request: RequestHeader, flash: Flash)
+
+@main("Workout Planner") {
+    
+    <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">
+    <input type="hidden" id="createUserRouteC" value="@routes.ChatApp.createUser()">
+    <input type="hidden" id="validateRouteC" value="@routes.ChatApp.validate()">
+    <input type="hidden" id="logoutRouteC" value="@routes.ChatApp.logout()">
+    <input type="hidden" id="universalMessageRouteC" value="@routes.ChatApp.sendAll()">
+    <input type="hidden" id="privateMessageRouteC" value="@routes.ChatApp.privateMessage()">
+    <input type="hidden" id="taskListRouteC" value="@routes.ChatApp.taskList()">
+	<div id="react-root"> </div>
+	<script src="@routes.Assets.versioned("javascript/version4.js")"></script>
+}
