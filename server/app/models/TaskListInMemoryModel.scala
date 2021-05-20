@@ -22,6 +22,9 @@ object TaskListInMemoryModel {
   }
   
   def addTask(username: String, task: String): Unit = {
+    println("addtask called in"+username)
+    println(username)
+
     tasks(username) = task :: tasks.get(username).getOrElse(Nil)
      println(tasks)
   }
@@ -29,15 +32,15 @@ object TaskListInMemoryModel {
   def universalMessege(sender: String, messege: String): Unit = {
     val msgSender = ""+sender+": "+messege
     println("before")
-    println("adding extra text please print UM in TLMM")
-    println(users)
-    println(tasks)
-    for(user <- tasks.keys){
+    println("adding extra text please print UM in TLMM\n")
+    println("\nusers = "+users)
+    println("\ntasks = "+tasks)
+    for(user <- users.keys){
       addTask(user,msgSender)
     }
     println("after")
-    println(users)
-    println(tasks)
+    println("\nusers = "+users)
+    println("\ntasks = "+tasks)
     //tasks(username) = task :: tasks.get(username).getOrElse(Nil)
   }
 
@@ -46,7 +49,7 @@ object TaskListInMemoryModel {
       println("private message before")
       println(users)
       println(tasks)
-      for(user <- tasks.keys){
+      for(user <- users.keys){
          println("sender user ="+user)
          println("reciever = "+reciever)
         if(user == reciever){
