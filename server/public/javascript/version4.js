@@ -1,6 +1,6 @@
 console.log("Running js");
 
-const ce = React.createElement
+const ce = React.createElement;
 
 const csrfToken = document.getElementById("csrfToken").value;
 const validateRoute = document.getElementById("validateRouteC").value;
