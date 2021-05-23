@@ -11,7 +11,7 @@ import models._
 @Singleton
 class ChatApp @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
   def load = Action { implicit request =>
-    println("Load on v4main called in load function in controller")
+    println("Load pushsuh on v4main called in load function in controller")
     Ok(views.html.chatApp())
   }
 
